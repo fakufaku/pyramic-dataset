@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "room": "EPFL, ELA 006 Anechoic Chamber",
+    "team": ["Hanjie Pan", "Robin Scheibler"],
+    "date": "2017-09-26",
+    "time start": "12:19",
+    "time end": "19:46",
+    "summary": "Record samples of sweeps (linear and exponential), white noise, and speech for the validation of DOA algorithms. The 48 microphones pyramic array is mounted atop a turntable, the three loud speakers are placed between 3.5 and 4m away at three different heights. The array is rotated anticlockwise in increments of 2 degrees 180 times, giving us a full circle.",
+    "notes": [
+      "Bugs with the USB interface crashed the computer several times and the measurements were thus taken by batch. The batches are the following. Batch 1: Angles 0 to 14. Batch 2: 16 to 180. Batch 3: 182 to 190. Batch 4: 192 to 206. Batch 5: 208 to 216. Batch 6: 218 to 358.",
+      "During quality control a glitch in recording at angle 310 with spkr 0 was found and the measurement was repeated on the next morning, but before the setup was moved. When the measurement was repeated, the temperature was 21.6C and the humidity 48.9%. The glitched sample is preserved in the 'discarded' directory.",
+      "The angles `alpha_raw` in the raw measurement names corresponds to anti-clockwise rotation of the array. Thus, the sources move clockwise with respect to the array. In the segmented files, the angle `alpha_seg` in the name is the angle the source moved with respect to the array, that is `alpha_seg = (360 - alpha_raw) mod 360`."
+    ]
+  },
+
+  "conditions": {
+    "start": {
+      "temperature": 21.7,
+      "humidity": 51.5
+    },
+    "end": {
+      "temperature": 21.8,
+      "humidity": 51.3
+    }
+  },
+
+  "equipment": {
+    "interface": "M-Audio M-Track Eight",
+    "speakers": "Genelec 8020A",
+    "turntable": "Bruel & Kjaer Turntable System Type 9640",
+    "microphones" : "Pyramic 48 MEMS microphone array, see https://github.com/LCAV/Pyramic"
+  },
+
+  "geometry": {
+    "microphones": {
+      "locations": [
+          [-0.014433756729740652, -0.02500000000000001, -0.14288690166235207], 
+          [-0.02598076211353317, -0.04500000000000001, -0.11022703842524302], 
+          [-0.037527767497325684, -0.06500000000000002, -0.077567175188134], 
+          [-0.04214656965084269, -0.07300000000000001, -0.06450322989329038], 
+          [-0.04445597072760119, -0.07700000000000001, -0.057971257245868546], 
+          [-0.049074772881118195, -0.085, -0.04490731195102493], 
+          [-0.060621778264910706, -0.10500000000000001, -0.012247448713915893], 
+          [-0.07216878364870323, -0.125, 0.020412414523193145], 
+          [-0.08660254037844388, -0.1, 0.061237243569579464], 
+          [-0.08660254037844388, -0.06, 0.061237243569579464], 
+          [-0.08660254037844388, -0.02, 0.061237243569579464], 
+          [-0.08660254037844388, -0.004, 0.061237243569579464], 
+          [-0.08660254037844388, 0.004, 0.061237243569579464], 
+          [-0.08660254037844388, 0.02, 0.061237243569579464], 
+          [-0.08660254037844388, 0.06, 0.061237243569579464], 
+          [-0.08660254037844388, 0.1, 0.061237243569579464], 
+          [0.028867513459481305, 0.0, -0.14288690166235207], 
+          [0.05196152422706635, 0.0, -0.11022703842524302], 
+          [0.07505553499465137, 0.0, -0.077567175188134], 
+          [0.08429313930168539, 0.0, -0.06450322989329038], 
+          [0.0889119414552024, 0.0, -0.057971257245868546], 
+          [0.09814954576223642, 0.0, -0.04490731195102493], 
+          [0.12124355652982144, 0.0, -0.012247448713915893], 
+          [0.1443375672974065, 0.0, 0.020412414523193145], 
+          [0.1299038105676658, -0.025000000000000022, 0.061237243569579464], 
+          [0.09526279441628827, -0.04500000000000002, 0.061237243569579464], 
+          [0.060621778264910726, -0.06500000000000002, 0.061237243569579464], 
+          [0.04676537180435971, -0.07300000000000001, 0.061237243569579464], 
+          [0.039837168574084196, -0.07700000000000001, 0.061237243569579464], 
+          [0.02598076211353318, -0.085, 0.061237243569579464], 
+          [-0.008660254037844359, -0.10500000000000001, 0.061237243569579464], 
+          [-0.04330127018922191, -0.125, 0.061237243569579464], 
+          [-0.014433756729740652, 0.02500000000000001, -0.14288690166235207], 
+          [-0.02598076211353317, 0.04500000000000001, -0.11022703842524302], 
+          [-0.037527767497325684, 0.06500000000000002, -0.077567175188134], 
+          [-0.04214656965084269, 0.07300000000000001, -0.06450322989329038], 
+          [-0.04445597072760119, 0.07700000000000001, -0.057971257245868546], 
+          [-0.049074772881118195, 0.085, -0.04490731195102493], 
+          [-0.060621778264910706, 0.10500000000000001, -0.012247448713915893], 
+          [-0.07216878364870323, 0.125, 0.020412414523193145], 
+          [-0.04330127018922191, 0.125, 0.061237243569579464], 
+          [-0.008660254037844359, 0.10500000000000001, 0.061237243569579464], 
+          [0.02598076211353318, 0.085, 0.061237243569579464], 
+          [0.039837168574084196, 0.07700000000000001, 0.061237243569579464], 
+          [0.04676537180435971, 0.07300000000000001, 0.061237243569579464], 
+          [0.060621778264910726, 0.06500000000000002, 0.061237243569579464], 
+          [0.09526279441628827, 0.04500000000000002, 0.061237243569579464], 
+          [0.1299038105676658, 0.025000000000000022, 0.061237243569579464]
+        ],
+      "height": 1.143,
+      "comment": "Height measured to lowest microphone in the array. Microphone locations relative to center of the array. The top triangle of the pyramic was verified to be horizontal."
+    },
+    "speakers": {
+      "location": {
+        "middle": { "distance": 3.944, "height": 1.305 },
+        "low":    { "distance": 3.488, "height": 0.264 },
+        "high":   { "distance": 4.071, "height": 2.185 }
+      },
+      "baffles_correction": {
+        "woofer": 0.0525,
+        "twitter": 0.145
+      },
+      "comment": "Height measured to bottom of woofer, distance is the horizontal distance between the center of the array and front of the speaker. Baffle correction term to the center of woofer and twitter is given"
+    }
+  }
+}
