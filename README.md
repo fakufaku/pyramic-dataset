@@ -13,9 +13,9 @@ heights. The audio samples recorded are
 
 This dataset allows to evaluate the performance of array processing algorithms
 on real-life recordings done using MEMS microphones similar to those used in
-mobile phones with all the non-idealities involved.  By subsampling the 48
-microphones, a large number of array configurations can be tested.  Example of
-algorithms are:
+mobile phones with all the non-idealities involved. The dataset is suitable for
+both 2D and 3D scenarios. By subsampling the 48 microphones, a large number of
+array configurations can be tested.  Example of algorithms are:
 
 * Direction of arrival (DOA) estimation
 * Beamforming
@@ -27,11 +27,11 @@ the impulse responses of microphones from sources at multiple angles with a
 variant of the image source model.
 
 In addition to the raw ([compressed](compressed) or not) and segmented
-recordings, the impule responses of all the microphones for every source
+recordings, the impulse responses of all the microphones for every source
 locations were recovered from the exponential sweep measurements and are
-distributed along the dataset. The initial manual measurement of loudspeakers
-and microphones locations was improved upon using a blind calibration method as
-described [later](calibration).
+distributed together with the dataset. The initial manual measurement of
+loudspeakers and microphones locations was improved upon using a blind
+calibration method as described [later](calibration).
 
 ### Dataset
 
@@ -43,7 +43,7 @@ The dataset and code is available on Zenodo split in two parts due to its size:
 A zipped version of this documentation and code is stored along the data
 on Zenodo but is also available on github for convenience.
 
-### Download the dataset
+#### Download the dataset
 
 The dataset is split in four different archives
 
@@ -241,6 +241,17 @@ that were used to visually inspect them for unexpected defects or problems.
 The experimental protocol followed for the collection of this dataset is described
 in details in `Protocol.md`. A machine readable (JSON) version of the document that
 contains all the most important quantities needed to process the data is also provided.
+
+### Microphones and Loudspeakers Locations
+
+The Pyramic microphone array is placed so that the tetrahedron is flat on top.
+Three loudspeakers are placed between 3.5 m to 4 m from the array with a colatitude
+angle of approximately 75 (high), 90 (middle), and 105 (low) degrees. Then, the array is rotated around the vertical
+axis through its center (as much as possible) 360 degrees in increments of 2 degrees.
+
+Because the loundspeaker at 90 degrees is approximately in the plane of the top
+24 microphones of the array, the corresponding recordings can be used to
+evaluate algorithms operating in two dimensions (plane).
 
 ### References
 
