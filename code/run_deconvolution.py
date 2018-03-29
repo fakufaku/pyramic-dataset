@@ -82,6 +82,7 @@ if __name__ == '__main__':
             wavfile.write(fn_out, r_rec, ir)
 
             if args.qc:
+                plt.figure(1)
                 time = np.arange(ir.shape[0]) / r_rec * 1000
                 plt.plot(time, ir)
                 plt.xlabel('time [ms]')
@@ -90,6 +91,7 @@ if __name__ == '__main__':
                 bname = 'ir_spkr{}_angle{}.png'.format(spkr, angle)
                 fn_out = os.path.join(qc_dir, bname)
                 plt.savefig(fn_out)
+                plt.clf()
 
             print('Speaker', spkr, 'Angle', angle, '... done.')
 
