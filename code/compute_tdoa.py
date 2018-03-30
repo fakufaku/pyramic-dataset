@@ -3,7 +3,11 @@ Compute TDOA
 ===========
 
 This script uses the white noise signal recording to compute the
-TDOA between every pair of microphones.
+TDOA between a reference and every other microphone. The resulting TDOA matrix
+is stored in a JSON file.
+
+Author: 2018 (c) Robin Scheibler
+License: MIT License
 """
 
 import numpy as np

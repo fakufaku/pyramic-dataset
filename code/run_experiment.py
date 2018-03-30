@@ -1,3 +1,13 @@
+'''
+Run Experiment
+==============
+
+This is the script automating the recording of the dataset.
+Please find more info in the PROTOCOL.md file
+
+Author: 2018 (c) Robin Scheibler
+License: MIT License
+'''
 
 import sys, os, datetime
 import numpy as np

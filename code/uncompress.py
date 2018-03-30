@@ -1,3 +1,13 @@
+'''
+Uncompress
+==========
+
+Read a tar file containing compressed audio files and directly write the
+uncompressed audio files in a new folder.
+
+Author: 2018 (c) Robin Scheibler
+License: MIT License
+'''
 
 import numpy as np
 import tarfile, argparse

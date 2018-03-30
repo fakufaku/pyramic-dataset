@@ -1,3 +1,13 @@
+'''
+Run Deconvolution
+=================
+
+This script will run the deconvolution on every exponential sweep in the
+dataset to produce the impulse response of every source location recorded.
+
+Author: 2018 (c) Robin Scheibler
+License: MIT License
+'''
 import sys, argparse, os
 from scipy.io import wavfile
 import numpy as np

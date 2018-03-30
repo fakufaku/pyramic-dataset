@@ -35,30 +35,31 @@ calibration method as described [later](calibration).
 
 ### Dataset
 
-The dataset and code is available on Zenodo split in two parts due to its size:
+The dataset and code is available on Zenodo split in two records due to its size:
 
-* Raw only: 10.5281/zenodo.1209005
-* Compressed and processed: 10.5281/zenodo.1209563
+* Compressed, segmented, and impulse responses: [10.5281/zenodo.1209563](https://zenodo.org/record/1209563)
+* Raw recordings in wav format only: [10.5281/zenodo.1209005](https://zenodo.org/record/1209005)
 
-A zipped version of this documentation and code is stored along the data
-on Zenodo but is also available on github for convenience.
+The documentation, code, and calibrated locations are stored on
+[github](https://zenodo.org/deposit/1209563). A zipped version is distributed
+along with the data on Zenodo.
 
 #### Download the dataset
 
-The dataset is split in four different archives
+The dataset is split in four different archives that can be downloaded separately.
 
 * The raw recordings in wav format (38GB)
 * The raw recordings compressed to [tta](compression) format (18GB)
 * The segmented recorded samples in wav format (22GB) (**<- probably what you need**)
 * The impulse responses (280MB)
 
-The following will get you started
+The following will get you started.
     
     git clone https://github.com/fakufaku/pyramic-dataset
     cd pyramic-dataset
 
     # get the segmented measurements (probably what you want)
-    wget -qO- <url> | tar xzv
+    wget -qO- https://zenodo.org/record/1209563/files/pyramic-segmented.tar.gz | tar xzv
 
     # OR Get the raw measurements
     wget -qO- https://zenodo.org/record/1209005/files/pyramic_raw_recordings.tar.gz | tar xzv
@@ -67,7 +68,7 @@ The following will get you started
     wget -qO- <url> | tar xv
 
     # OR get the impulse responses
-    wget -qO- <url> | tar xzv
+    wget -qO- https://zenodo.org/record/1209563/files/pyramic_ir.tar.gz | tar xzv
 
 #### Checksum the Raw Data
 
@@ -117,12 +118,21 @@ relative to the array is _clockwise_ (or negative trigonometric direction).
 
 ### Code Dependencies
 
-Python 3.5 with the following packages installed.
+The code used for segmentation/uncompression/calibration was written
+in python (version 3.6). None of this code is required to use the data
+as it is distributed in widely supported wav and JSON formats. If you nevertheless
+want to use some of that code, the following packages might be required.
 
-    numpy, scipy, ipyparalle, samplerate, pyroomacoustics
+    python=3.6.4
+    numpy=1.14.2
+    scipy=1.0.0
+    samplerate=0.1.0
+    matplotlib=2.2.2
+    ipyparallel=6.1.1
+    pyroomacoustics=0.1.16
 
-We recommend using Anaconda as it is the simplest way to quickly get numpy and
-scipy running. The rest can be installed via pip.
+We recommend using Anaconda as it is the simplest way to quickly get numpy,
+scipy, and matplotlib running. The rest can be installed via pip.
 
 No effort was made to make this code Python 2.7 compatible, but it is not
 impossible that large parts of it are nonetheless.
@@ -239,7 +249,7 @@ that were used to visually inspect them for unexpected defects or problems.
 ### Experimental Protocol
 
 The experimental protocol followed for the collection of this dataset is described
-in details in `Protocol.md`. A machine readable (JSON) version of the document that
+in details in `PROTOCOL.md`. A machine readable (JSON) version of the document that
 contains all the most important quantities needed to process the data is also provided.
 
 ### Microphones and Loudspeakers Locations

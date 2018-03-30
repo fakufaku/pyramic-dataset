@@ -1,3 +1,15 @@
+'''
+FFMPEG AUDIO
+============
+
+This is a thin wrapper around the ffmpeg software. It can be used
+to read probably very many audio file formats into python. It was
+tested with TTA and WAV formats. It only supports signed 16 bit audio
+as of now.
+
+Author: 2018 (c) Robin Scheibler
+License: MIT License
+'''
 
 import numpy as np
 import re
@@ -5,7 +17,25 @@ import subprocess as sp
 
 def read(filename, ffmpeg_bin='ffmpeg', debug=False):
     '''
+    Read an audio file into python using FFMPEG. The syntax
+    is similar to `scipy.io.wavfile.read`.
+
     Note: only supports signed 16 bit audio
+
+    Parameters
+    ----------
+    filename: str
+        The audio filename
+    ffmpeg_bin: str, optional
+        The name of the ffmpeg executable
+    debug: bool, optional
+        Print some debug information
+
+    Returns
+    -------
+    samplerate: The samplerate of the audio signal.
+    audio: An ndarray containing the audio samples. For multichannel audio it returns
+        a 2D array with every column corresponding to a channel.
     '''
     
     command = [ ffmpeg_bin, '-i', filename ]

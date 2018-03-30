@@ -1,3 +1,12 @@
+'''
+Generation of Sweep Signals
+===========================
+
+Routines to generate and save to wav linear and exponential sweep signals.
+
+Author: 2018 (c) Robin Scheibler
+License: MIT License
+'''
 # Experiment from 2016/08/31
 from __future__ import division, print_function
 
@@ -19,6 +28,20 @@ def window(signal, n_win):
     return sig_copy
 
 def exponential_sweep(T, fs, f_low=50., f_high=22000.):
+    '''
+    Exponential Sweep
+
+    Parameters
+    ----------
+    T: float
+        Length of the sweep in seconds
+    fs: float
+        Sampling frequency
+    f_low: float
+        Lowest frequency in the sweep
+    f_high: float
+        Highest frequency in the sweep
+    '''
 
     f1 = f_low     # Start frequency in [Hz]
     f2 = f_high  # End frequency in [Hz]
@@ -35,6 +58,20 @@ def exponential_sweep(T, fs, f_low=50., f_high=22000.):
     return x_exp
 
 def linear_sweep(T, fs, f_low=50., f_high=22000.):
+    '''
+    Linear Sweep
+
+    Parameters
+    ----------
+    T: float
+        Length of the sweep in seconds
+    fs: float
+        Sampling frequency
+    f_low: float
+        Lowest frequency in the sweep
+    f_high: float
+        Highest frequency in the sweep
+    '''
 
     f1 = f_low     # Start frequency in [Hz]
     f2 = f_high  # End frequency in [Hz]

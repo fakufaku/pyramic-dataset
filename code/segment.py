@@ -1,3 +1,14 @@
+'''
+Segment
+=======
+
+This file will segment all the recordings into files containing only one
+specific audio sample recording (sweep, noise, speech, etc).
+
+Author: 2018 (c) Robin Scheibler
+License: MIT License
+'''
+
 from __future__ import division, print_function
 
 import argparse, os, re, sys

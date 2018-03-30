@@ -2,8 +2,17 @@
 Calibration
 ===========
 
-This script performs calibration of the array and the sources locations using
-Thrun's affine structure from sound algorithm.
+This module contains routines for the blind calibration of a microphone
+array with sources in the far field. The methods are:
+
+    * `joint_calibration_gd`: Straightforward gradient descent method
+    * `joint_calibration_sgd`: Straightforward stochastic gradient descent method
+    * `structure_from_sound`: The SVD based method from Thrun [1]
+
+[1] Sebastian Thrun, __[Affine Structure from Sound](https://papers.nips.cc/paper/2770-affine-structure-from-sound.pdf)__, NIPS, 2007
+
+Author: 2018 (c) Robin Scheibler
+License: MIT License
 """
 
 import numpy as np

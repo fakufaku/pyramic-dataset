@@ -1,8 +1,11 @@
 '''
-This file perform deconvolution in the Fourier domain.
+Deconvolution
+=============
 
-History:
-    2017 Robin Scheibler
+This file contains the routine to perform Wiener deconvolution in the Fourier domain.
+
+Author: 2018 (c) Robin Scheibler
+License: MIT License
 '''
 from __future__ import division, print_function
 
@@ -11,8 +14,10 @@ from scipy import linalg as la
 from scipy.interpolate import interp1d
 
 try:
-    import mkl_fft as fft
-    print('Using mkl')
+    # optionaly: https://github.com/IntelPython/mkl_fft
+    # can be used to accelerate FFT
+    import mkl_fft._numpy_fft as fft
+    print('Using mkl_fft')
 except ImportError:
     import numpy.fft as fft
 
@@ -136,13 +141,17 @@ if __name__ == '__main__':
 
     plt.figure()
 
+    y_lim = [-50, 70]
+
     plt.subplot(2,2,1)
     plot_spectrum(data_rec, fs)
     plt.title('Recording')
+    plt.ylim(y_lim)
 
     plt.subplot(2,2,2)
     plot_spectrum(data_test, fs)
     plt.title('Test Signal')
+    plt.ylim(y_lim)
 
     plt.subplot(2,2,3)
     Pn = periodogram(data_noise, 64)
@@ -150,15 +159,20 @@ if __name__ == '__main__':
     plot_spectrum(data_noise, fs, 'g')
     plt.plot(f, 10*np.log10(Pn), 'r')
     plt.title('Noise')
+    plt.ylim(y_lim)
 
     plt.subplot(2,2,4)
     plot_spectrum(h, fs)
     plt.title('Deconvolved Signal')
+    plt.ylim(y_lim)
 
     plt.tight_layout(pad=0.1)
 
     plt.figure()
-    plt.plot(h)
+    time = np.arange(len(h)) / r_rec * 1000
+    plt.plot(time, h)
+    plt.title('Impulse Responses')
+    plt.xlabel('Time [ms]')
 
     plt.tight_layout(pad=0.1)
 

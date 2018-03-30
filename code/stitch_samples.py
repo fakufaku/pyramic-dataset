@@ -1,11 +1,14 @@
 '''
+Stitch Samples
+==============
+
 This script takes all the samples in the 'samples' folder and
 stitch them into a single wav file.
 A short pause is added between the samples and samples that are
 at a different sampling frequency are resampled to 48 kHz.
 
-History:
-    2017 Robin Scheibler: initial script
+Author: 2018 (c) Robin Scheibler
+License: MIT License
 '''
 from __future__ import division, print_function
 import numpy as np

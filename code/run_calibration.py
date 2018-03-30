@@ -1,9 +1,12 @@
 """
-Calibration
-===========
+Run Calibration
+===============
 
-This script performs calibration of the array and the sources locations using
-Thrun's affine structure from sound algorithm.
+This script will run the callibration routine on the dataset and produce a JSON
+file containing the optimized locations of microphones and sources.
+
+Author: 2018 (c) Robin Scheibler
+License: MIT License
 """
 
 import numpy as np
