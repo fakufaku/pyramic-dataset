@@ -33,6 +33,11 @@ distributed together with the dataset. The initial manual measurement of
 loudspeakers and microphones locations was improved upon using a blind
 calibration method as described [later](calibration).
 
+### Author and License
+
+This dataset was collected and curated by Robin Scheibler with the help of a few [people](acknowledgement). The code is
+under MIT License while the data itself is CC-BY 4.0.
+
 ### Dataset
 
 The dataset available on Zenodo is split in two records due to its size:
@@ -262,6 +267,15 @@ axis through its center (as much as possible) 360 degrees in increments of 2 deg
 Because the loundspeaker at 90 degrees is approximately in the plane of the top
 24 microphones of the array, the corresponding recordings can be used to
 evaluate algorithms operating in two dimensions (plane).
+
+### Acknowledgement
+
+The author would like to acknowledge Juan Azcarreta Ortiz, Corentin Ferry, and
+René Beuchat for their help in the design and usage of the Pyramic array.
+Hanjie Pan, Miranda Kreković, Mihailo Kolundzija, and Dalia El Badawy for
+lending a hand, or even two, during experiments. Finally, Juan Azcarreta Ortiz,
+Eric Bezzam, Hanjie Pan and Ivan Dokmanić for feedback on the documentation and
+dataset organization. Etienne Rivet for his help with the anechoic room.
 
 ### References
 
