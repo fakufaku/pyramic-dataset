@@ -3,39 +3,39 @@ Pyramic Dataset : Multichannel Anechoic Audio Recordings
 
 The Pyramic Dataset contains recordings done using the
 [Pyramic](https://github.com/LCAV/Pyramic) 48 channels microphone array in an
-anechoic chambers. The recordings consist of 8 different samples (2x sweeps, 1x
+anechoic chamber. The recordings consist of 8 different samples (2x sweeps, 1x
 noise, 5x speech) repeated at 180 angles (every 2 degrees) and from 3 different
-heights. The audio samples recorded are
+heights. The recorded audio samples are
 
 * Linear and exponential sweeps
 * Noise sequence
 * 2x male and 3x female speech
 
 This dataset allows to evaluate the performance of array processing algorithms
-on real-life recordings done using MEMS microphones similar to those used in
-mobile phones with all the non-idealities involved. The dataset is suitable for
+on real-life recordings using MEMS microphones similar to those used in mobile
+phone devices with all the non-idealities involved. The dataset is suitable for
 both 2D and 3D scenarios. By subsampling the 48 microphones, a large number of
-array configurations can be tested.  Example of algorithms are:
+array configurations can be tested.  Examples of algorithms are:
 
 * Direction of arrival (DOA) estimation
 * Beamforming
 * Source separation
 * Array calibration
 
-Another application is the generation of realistic room impulse by combining
-the impulse responses of microphones from sources at multiple angles with a
-variant of the image source model.
+Another application is the generation of realistic room impulse responses by
+combining the impulse responses of microphones from sources at multiple angles
+with a variant of the image source model.
 
 In addition to the raw ([compressed](compressed) or not) and segmented
 recordings, the impulse responses of all the microphones for every source
-locations were recovered from the exponential sweep measurements and are
+location were recovered from the exponential sweep measurements and are
 distributed together with the dataset. The initial manual measurement of
 loudspeakers and microphones locations was improved upon using a blind
 calibration method as described [later](calibration).
 
 ### Dataset
 
-The dataset and code is available on Zenodo split in two records due to its size:
+The dataset available on Zenodo is split in two records due to its size:
 
 * Compressed, segmented, and impulse responses: [10.5281/zenodo.1209563](https://zenodo.org/record/1209563)
 * Raw recordings in wav format only: [10.5281/zenodo.1209005](https://zenodo.org/record/1209005)
@@ -72,7 +72,7 @@ The following will get you started.
 
 #### Checksum the Raw Data
 
-The `sha256` checksums of the wav files is available in `checksums.txt`. The checksums
+The `sha256` checksums of the wav files are available in `checksums.txt`. The checksums
 were obtained by running
 
     sha256sum recordings/ > checksums.txt
