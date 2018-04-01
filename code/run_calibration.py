@@ -116,6 +116,9 @@ if __name__ == '__main__':
     if args.save is not None:
 
         # transform to spherical coordinates and reshape
+        gain0, col0, az0 = cart2sph(*P0)
+        col0 = col0.reshape(shape)[0,:]
+
         gain, col, az = cart2sph(*P)
         col = col.reshape(shape)
         az = az.reshape(shape)
@@ -125,6 +128,7 @@ if __name__ == '__main__':
         calibration_info = dict()
         calibration_info['speakers_numbering'] = spkr_list
         calibration_info['microphones'] = X.T.tolist()
+        calibration_info['speakers_manual_colatitude'] = dict(zip(spkrs, col0))
 
         calibration_info['sources'] = {}
         for i_s, spkr in enumerate(spkrs):
@@ -185,18 +189,10 @@ if __name__ == '__main__':
         col = col.reshape(shape)[I,:]
         az = az.reshape(shape)[I,:]
 
-        plt.subplot(1,2,1)
-        plt.plot(np.degrees(az0), np.degrees(col))
-        plt.plot(np.degrees(az0), np.degrees(col0))
-        plt.legend(['high', 'low', 'middle'])
+        plt.plot(np.degrees(az), np.degrees(col), '.', markersize=0.5)
+        plt.plot(np.degrees(az0), np.degrees(col0), '.', c='0.5', markersize=0.5)
         plt.xlabel('colatitude set')
         plt.ylabel('error')
-
-        plt.subplot(1,2,2)
-        plt.plot(np.degrees(az0), np.degrees(az - az0))
-        plt.legend(['high', 'low', 'middle'])
-        plt.xlabel('azimuth set')
-        plt.ylabel('error')
-
+        plt.gca().invert_yaxis()
 
         plt.show()
