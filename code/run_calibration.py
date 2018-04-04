@@ -129,6 +129,7 @@ if __name__ == '__main__':
         calibration_info['speakers_numbering'] = spkr_list
         calibration_info['microphones'] = X.T.tolist()
         calibration_info['speakers_manual_colatitude'] = dict(zip(spkrs, col0))
+        calibration_info['sound_speed_mps'] = sound_speed
 
         calibration_info['sources'] = {}
         for i_s, spkr in enumerate(spkrs):
