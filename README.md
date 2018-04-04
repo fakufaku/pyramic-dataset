@@ -223,6 +223,8 @@ calibrated locations are stored in `calibration/calibrated_locations.json` with
 the following format.
 
 * `speakers_numbering` : contains the mapping between `middle`/`low`/`high` to the index used in the file names
+* `speakers_manual_colatitude`: the manually calibrated colatitude of the speakers with respect to the array
+* `sound_speed_mps` : the estimated speed of sound based on temperature/humidity during the experiment
 * `microphones` : an array of triplets containing the microphones locations
 * `sources` : the location of sources in polar coordinates
   * `high`/`middle`/`low` : the loudspeaker
