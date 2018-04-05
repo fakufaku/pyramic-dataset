@@ -127,9 +127,13 @@ if __name__ == '__main__':
         # build a structure with the calibration information
         calibration_info = dict()
         calibration_info['speakers_numbering'] = spkr_list
-        calibration_info['microphones'] = X.T.tolist()
         calibration_info['speakers_manual_colatitude'] = dict(zip(spkrs, col0))
         calibration_info['sound_speed_mps'] = sound_speed
+
+        # Add back the reference mic and offset
+        new_mic_array = np.c_[[0,0,0], X]
+        new_mic_array -= new_mic_array.mean(axis=1, keepdims=True)
+        calibration_info['microphones'] = new_mic_array.T.tolist()
 
         calibration_info['sources'] = {}
         for i_s, spkr in enumerate(spkrs):
