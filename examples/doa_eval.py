@@ -101,10 +101,9 @@ def run_doa(angle, h, algo, doa_kwargs, freq_bins, speakers_numbering):
             'error_opt' : float(error_opt),
             }
 
+def main_run(args):
 
-if __name__ == '__main__':
-
-    with open('calibration/calibrated_locations.json', 'r') as f:
+    with open(args.calibration_file, 'r') as f:
         locations = json.load(f)
 
     c = locations['sound_speed_mps']
@@ -147,8 +146,52 @@ if __name__ == '__main__':
     # Now run this in parallel with joblib
     results = Parallel(n_jobs=18)(delayed(run_doa)(*args) for args in all_args)
 
-    with open('doa_results.json', 'w') as f:
+    with open(args.output, 'w') as f:
         json.dump(results, f)
 
 
+def main_plot(args):
+    ''' Plot the result of the Evaluation '''
+
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+
+    df = pd.read_json(args.result)
+
+    # Compute the average error with the grid used
+    grid = pra.doa.GridSphere(n_points=30000)
+    avg_error = np.degrees(grid.min_max_distance()[2])
+
+    # remove the location columns, only keep error
+    df = df[['algo', 'angle', 'spkr_height', 'error_man', 'error_opt']]
+    df2 = pd.melt(df, value_vars=['error_man', 'error_opt'],
+            value_name='Error', var_name='Calibration',
+            id_vars=['algo','angle','spkr_height'])
+
+    df2['Error'] = df2['Error'].apply(np.degrees)
+
+    sns.boxplot(x="algo", y="Error", hue="Calibration", data=df2, palette="PRGn", whis=[5, 95])
+    plt.axhline(y=avg_error)
+    plt.show()
+
+
+if __name__ == '__main__':
+
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Evaluate a few DOA algorithms")
+    subparsers = parser.add_subparsers()
+
+    parser_run = subparsers.add_parser('run', description='Run the DOA algorithms on the measurements')
+    parser_run.set_defaults(func=main_run)
+    parser_run.add_argument('calibration_file', type=str, help='The JSON file containing the calibrated locations')
+    parser_run.add_argument('--output', '-o', type=str, default='doa_results.json', help='The JSON file where to save the results')
+
+    parser_plot = subparsers.add_parser('plot', description='Plot the results of the evaluation')
+    parser_plot.set_defaults(func=main_plot)
+    parser_plot.add_argument('result', type=str, help='The JSON file containing the results')
+
+    args = parser.parse_args()
+    args.func(args)
 
