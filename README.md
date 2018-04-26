@@ -33,6 +33,8 @@ distributed together with the dataset. The initial manual measurement of
 loudspeakers and microphones locations was improved upon using a blind
 calibration method as described [later](calibration).
 
+![anechoic_room](https://github.com/fakufaku/pyramic-dataset/raw/master/figures/anechoic_room_setup.jpg)
+
 ### Author and License
 
 This dataset was collected and curated by Robin Scheibler with the help of a few [people](acknowledgement). The code is
