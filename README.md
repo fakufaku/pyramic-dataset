@@ -1,5 +1,5 @@
-Pyramic Dataset : Multichannel Anechoic Audio Recordings
-========================================================
+Pyramic Dataset : 48-Channel Anechoic Audio Recordings of 3D Sources
+====================================================================
 
 The Pyramic Dataset contains recordings done using the
 [Pyramic](https://github.com/LCAV/Pyramic) 48 channels microphone array in an
@@ -38,7 +38,8 @@ calibration method as described [later](calibration).
 This dataset was collected and curated by Robin Scheibler with the help of a few [people](acknowledgement). The code is
 under MIT License while the data itself is CC-BY 4.0.
 
-### Dataset
+Dataset
+-------
 
 The dataset available on Zenodo is split in two records due to its size:
 
@@ -46,17 +47,18 @@ The dataset available on Zenodo is split in two records due to its size:
 * Raw recordings in wav format only: [10.5281/zenodo.1209005](https://zenodo.org/record/1209005)
 
 The documentation, code, and calibrated locations are stored on
-[github](https://zenodo.org/deposit/1209563). A zipped version is distributed
-along with the data on Zenodo.
+[github](https://zenodo.org/deposit/1209563). A zipped version of this repo is
+distributed along with the data on Zenodo for archive purpose, but the version
+in this repository is the most recent.
 
-#### Download the dataset
+### Download the dataset
 
 The dataset is split in four different archives that can be downloaded separately.
 
-* The raw recordings in wav format (38GB)
-* The raw recordings compressed to [tta](compression) format (18GB)
 * The segmented recorded samples in wav format (22GB) (**<- probably what you need**)
 * The impulse responses (280MB)
+* The raw recordings compressed to [tta](compression) format (18GB)
+* The raw recordings in wav format (38GB)
 
 The following will get you started.
     
@@ -64,7 +66,16 @@ The following will get you started.
     cd pyramic-dataset
 
     # get the segmented measurements (probably what you want)
-    wget -qO- https://zenodo.org/record/1209563/files/pyramic-segmented.tar.gz | tar xzv
+    # replace <sample_type> by one of 
+    #  * fq_sampleX, X=0,1,2,3,4
+    #  * silence
+    #  * sweep_lin
+    #  * sweep_exp
+    #  * noise
+    wget -qO- https://zenodo.org/record/1209563/files/pyramic_segmented_<sample_type>.tar.gz | tar xzv
+
+    # ... OR get all the segmented measurements at once
+    sh ./download_segmented.sh
 
     # OR Get the raw measurements
     wget -qO- https://zenodo.org/record/1209005/files/pyramic_raw_recordings.tar.gz | tar xzv
@@ -75,7 +86,7 @@ The following will get you started.
     # OR get the impulse responses
     wget -qO- https://zenodo.org/record/1209563/files/pyramic_ir.tar.gz | tar xzv
 
-#### Checksum the Raw Data
+### Checksum the Raw Data
 
 The `sha256` checksums of the wav files are available in `checksums.txt`. The checksums
 were obtained by running
@@ -88,7 +99,7 @@ files are in `recordings` folder)
     cd recordings
     sha256sum -c checksums.txt
 
-#### File Naming
+### File Naming
 
 The raw recording files are named according to the following pattern:
 
@@ -119,7 +130,8 @@ __Note__:
 Since the array rotates counterclockwise, the rotation of the loudspeaker
 relative to the array is _clockwise_ (or negative trigonometric direction).
 
-### Post-Processing
+Post-Processing
+---------------
 
 ### Code Dependencies
 
@@ -142,7 +154,7 @@ scipy, and matplotlib running. The rest can be installed via pip.
 No effort was made to make this code Python 2.7 compatible, but it is not
 impossible that large parts of it are nonetheless.
 
-#### Compression
+### Compression
 
 To reduce the file size efficiently, they were compressed using the [True
 Audio](https://en.wikipedia.org/wiki/TTA_(codec)) (TTA) lossless compression format.
@@ -176,7 +188,7 @@ compressed_recordings.tar`) and read directly from python (via ffmpeg)
 
     r,data = ffmpeg_audio.read('./compressed_recordings/pyramic_spkr0_all_samples_0.wav')
 
-#### Segmentation
+### Segmentation
 
 Since all the sound samples were recorded together in the same file, a
 segmentation step was necessary to recover the recordings of individual
@@ -189,7 +201,12 @@ following.
 The result of the segmentation was manually verified for all recordings by visual
 inspection of the spectrogram image produced by the `-q` option above.
 
-#### Calibration
+After segmentation, the speech samples (`fq_sampleX`, X=0,1,2,3,4) were
+downsampled to 16 kHz since this is the sampling frequency of the original
+samples played back. All other samples (`sweep_lin`, `sweep_exp`, `noise`, and
+`silence`) are sampled at 48 kHz.
+
+### Calibration
 
 The locations of the microphones on the array are fairly rigid and were
 manually measured in advance of the experiment. The locations of sources with
@@ -238,7 +255,7 @@ The calibration procedure is automated and can be run like this.
     # calibrate the locations
     python code/run_calibration.py -f calibration/pyramic_tdoa.json -m svd -s calibration/calibrated_locations.json -p
 
-#### Impulse Responses
+### Impulse Responses
 
 The response of every microphone to every angle was obtained from the exponential
 sweep by [Wiener deconvolution](https://en.wikipedia.org/wiki/Wiener_deconvolution).
