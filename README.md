@@ -255,6 +255,19 @@ The calibration procedure is automated and can be run like this.
     # calibrate the locations
     python code/run_calibration.py -f calibration/pyramic_tdoa.json -m svd -s calibration/calibrated_locations.json -p
 
+In the following figure, we can compare the manually calibrated trajectory (solid line) to
+the optimized one (dotted line).
+
+![trajectory](https://github.com/fakufaku/pyramic-dataset/raw/master/figures/calibration_trajectory.png)
+
+Finally, we run SRP-PHAT and MUSIC on the recorded data and compared the
+localization error before and after optimization. After optimization, the error
+is very close to the gridding error, suggesting that the calibration is
+successful.
+
+![doa](https://github.com/fakufaku/pyramic-dataset/raw/master/figures/doa_error.png)
+
+
 ### Impulse Responses
 
 The response of every microphone to every angle was obtained from the exponential

@@ -20,6 +20,8 @@ of 2 degrees for a total of 180 distinct angles. Three loudspeakers were placed
 at fixed locations, all forming the same angle with the array, but with 3
 different heights.
 
+![setup](https://github.com/fakufaku/pyramic-dataset/raw/master/figures/experiment_setup.png)
+
 A total of 8 samples were played by each loudspeaker for each angle:
 
 * Linear sweep, `samples/sweep_lin.wav`, 48 kHz
@@ -44,6 +46,8 @@ The speech samples were picked from the TIMIT corpus as follows
 
 All the samples were resampled at 48 kHz if necessary and stitched into one
 file (`all_samples.wav`) before playback.  The playback was done at 48 kHz.
+
+![anechoic_room](https://github.com/fakufaku/pyramic-dataset/raw/master/figures/anechoic_room_setup.jpg)
 
 For each angle, the array was rotated by the appropriate amount
 programatically using the computer interface from the turntable. 
