@@ -11,6 +11,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="Evaluate a few DOA algorithms")
     parser.add_argument('calibration_file', type=str, help='The JSON file containing the calibrated locations')
+    parser.add_argument('-s', '--save', metavar='FILE', type=str, help='Save plot')
     args = parser.parse_args()
 
     with open(args.calibration_file, 'r') as f:
@@ -56,7 +57,8 @@ if __name__ == '__main__':
 
     plt.tight_layout(pad=0.1)
 
-    plt.savefig('calibration_trajectory.pdf')
+    if args.save is not None:
+        plt.savefig(args.save, dpi=300)
 
     plt.show()
 
