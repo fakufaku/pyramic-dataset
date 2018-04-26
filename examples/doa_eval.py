@@ -170,9 +170,31 @@ def main_plot(args):
             id_vars=['algo','angle','spkr_height'])
 
     df2['Error'] = df2['Error'].apply(np.degrees)
+    df2['Calibration'] = df2['Calibration'].replace({'error_man' : 'Manual', 'error_opt' : 'Optimized'})
 
-    sns.boxplot(x="algo", y="Error", hue="Calibration", data=df2, palette="PRGn", whis=[5, 95])
+    # Ignore WAVES as the algorithm does not work so well
+    df2 = df2[df2.algo != 'WAVES']
+    df2 = df2.rename(index=str, columns={'algo' : 'Algorithms'})
+
+    sns.set_style('white')
+    sns.set_context('paper')
+
+    fig, ax = plt.subplots(figsize=(3.38846 / 2, 1.))
+
+    pal = sns.cubehelix_palette(2, start=-0.5, rot=0.1, dark=0.4, light=.7, reverse=True)
+
+    sns.boxplot(ax=ax, x="Algorithms", y="Error", hue="Calibration", data=df2, palette=pal, whis=[5, 95], linewidth=0.7, fliersize=1.)
+    plt.legend(framealpha=0.8, frameon=True, loc='upper right', fontsize='xx-small')
+    plt.xlabel('')
+    plt.xticks(fontsize='x-small')
+    plt.ylabel('Error [$^\circ$]', fontsize='x-small')
     plt.axhline(y=avg_error)
+    sns.despine(ax=ax, offset=5)
+    plt.tight_layout(pad=0.1)
+
+    if args.save is not None:
+        plt.savefig(args.save, dpi=300)
+
     plt.show()
 
 
@@ -191,6 +213,7 @@ if __name__ == '__main__':
     parser_plot = subparsers.add_parser('plot', description='Plot the results of the evaluation')
     parser_plot.set_defaults(func=main_plot)
     parser_plot.add_argument('result', type=str, help='The JSON file containing the results')
+    parser_plot.add_argument('-s', '--save', metavar='FILE', type=str, help='Save plot')
 
     args = parser.parse_args()
     args.func(args)
