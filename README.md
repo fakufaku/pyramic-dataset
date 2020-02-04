@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1209563.svg)](https://doi.org/10.5281/zenodo.1209563)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1209005.svg)](https://doi.org/10.5281/zenodo.1209005)
+
 Pyramic Dataset : 48-Channel Anechoic Audio Recordings of 3D Sources
 ====================================================================
 
